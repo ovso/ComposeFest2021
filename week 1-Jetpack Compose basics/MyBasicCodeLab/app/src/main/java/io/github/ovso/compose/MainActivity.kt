@@ -3,6 +3,7 @@ package io.github.ovso.compose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -18,26 +19,32 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyBasicCodeLabTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.primary) {
-                    Greeting("Android")
-                }
+                MyApp()
             }
         }
     }
 }
 
 @Composable
+private fun MyApp() {
+    Surface(color = MaterialTheme.colors.primary) {
+        Greeting("Android")
+    }
+}
+
+@Composable
 fun Greeting(name: String) {
-    Text(text = "Hello $name!", modifier = Modifier.padding(24.dp))
+    Column(modifier = Modifier.padding(24.dp)) {
+        Text(text = "Hello,")
+        Text(text = name)
+    }
+//    Text(text = "Hello, \n$name", modifier = Modifier.padding(24.dp))
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     MyBasicCodeLabTheme {
-        Surface(color = MaterialTheme.colors.primary) {
-            Greeting("Android")
-        }
+        MyApp()
     }
 }
