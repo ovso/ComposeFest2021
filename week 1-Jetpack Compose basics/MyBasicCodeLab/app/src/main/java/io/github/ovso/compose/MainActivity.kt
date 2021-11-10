@@ -10,6 +10,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,7 +30,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MyApp() {
-    val shouldShowOnboarding = remember { mutableStateOf(true) }
+    val shouldShowOnboarding = rememberSaveable { mutableStateOf(true) }
     if (shouldShowOnboarding.value) {
         OnBoardingScreen(onContinueClicked = {
             shouldShowOnboarding.value = false
