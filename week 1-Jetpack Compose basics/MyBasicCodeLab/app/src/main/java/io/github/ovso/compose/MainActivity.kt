@@ -1,5 +1,7 @@
 package io.github.ovso.compose
 
+import android.content.res.Configuration.UI_MODE_NIGHT_NO
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -74,9 +76,11 @@ fun Greeting(name: String) {
                     .padding(bottom = extraPadding.value.coerceAtLeast(0.dp))
             ) {
                 Text(text = "Hello,")
-                Text(text = name, style = MaterialTheme.typography.h4.copy(
-                    fontWeight = FontWeight.ExtraBold
-                ))
+                Text(
+                    text = name, style = MaterialTheme.typography.h4.copy(
+                        fontWeight = FontWeight.ExtraBold
+                    )
+                )
             }
             OutlinedButton(onClick = {
                 expanded.value = expanded.value.not()
@@ -86,14 +90,6 @@ fun Greeting(name: String) {
         }
     }
 //    Text(text = "Hello, \n$name", modifier = Modifier.padding(24.dp))
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    MyBasicCodeLabTheme {
-        MyApp()
-    }
 }
 
 @Composable
@@ -120,7 +116,33 @@ fun OnBoardingScreen(onContinueClicked: () -> Unit) {
 @Composable
 fun OnBoardingPreview() {
     MyBasicCodeLabTheme {
-//        OnBoardingScreen(onContinueClicked = {})
+        OnBoardingScreen(onContinueClicked = {})
+    }
+}
+
+@Preview(
+    showBackground = true,
+    widthDp = 320,
+    uiMode = UI_MODE_NIGHT_YES,
+    name = "DefaultPreviewDark"
+)
+@Composable
+fun DefaultPreviewDark() {
+    MyBasicCodeLabTheme {
         Greetings()
+    }
+}
+
+@Preview(
+    showBackground = true,
+    widthDp = 320,
+    uiMode = UI_MODE_NIGHT_NO,
+    name = "DefaultPreviewLight"
+)
+@Composable
+fun DefaultPreview() {
+    MyBasicCodeLabTheme {
+        Greetings()
+//        MyApp()
     }
 }
