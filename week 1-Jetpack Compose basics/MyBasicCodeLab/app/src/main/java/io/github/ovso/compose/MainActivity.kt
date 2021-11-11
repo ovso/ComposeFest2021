@@ -18,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -81,11 +82,23 @@ fun Greeting(name: String) {
                         fontWeight = FontWeight.ExtraBold
                     )
                 )
+                if (expanded.value) {
+                    Text(
+                        text = "Composem ipsum color sit lazy, "
+                                + "padding theme elit, sed do bouncy. ".repeat(4)
+                    )
+                }
             }
             OutlinedButton(onClick = {
                 expanded.value = expanded.value.not()
             }) {
-                Text(if (expanded.value) "Show less" else "Show more")
+                Text(
+                    if (expanded.value) {
+                        stringResource(R.string.show_less)
+                    } else {
+                        stringResource(R.string.show_more)
+                    }
+                )
             }
         }
     }
