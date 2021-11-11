@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.github.ovso.compose.ui.theme.MyBasicCodeLabTheme
@@ -73,7 +74,9 @@ fun Greeting(name: String) {
                     .padding(bottom = extraPadding.value.coerceAtLeast(0.dp))
             ) {
                 Text(text = "Hello,")
-                Text(text = name, style = MaterialTheme.typography.h4)
+                Text(text = name, style = MaterialTheme.typography.h4.copy(
+                    fontWeight = FontWeight.ExtraBold
+                ))
             }
             OutlinedButton(onClick = {
                 expanded.value = expanded.value.not()
@@ -117,6 +120,7 @@ fun OnBoardingScreen(onContinueClicked: () -> Unit) {
 @Composable
 fun OnBoardingPreview() {
     MyBasicCodeLabTheme {
-        OnBoardingScreen(onContinueClicked = {})
+//        OnBoardingScreen(onContinueClicked = {})
+        Greetings()
     }
 }
