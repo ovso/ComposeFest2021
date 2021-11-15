@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -29,8 +31,18 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             LayoutInComposeTheme {
-                LayoutsCodelab()
+                SimpleList()
             }
+        }
+    }
+}
+
+@Composable
+fun SimpleList() {
+    val scrollState = rememberLazyListState()
+    LazyColumn(state = scrollState) {
+        items(100) {
+            Text(("Item #$it"))
         }
     }
 }
@@ -69,7 +81,7 @@ fun BodyContent(modifier: Modifier) {
 @Composable
 fun LayoutsCodelabPreview() {
     LayoutInComposeTheme {
-        LayoutsCodelab()
+        SimpleList()
     }
 }
 
