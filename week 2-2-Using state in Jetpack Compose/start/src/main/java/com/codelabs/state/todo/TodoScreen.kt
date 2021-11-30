@@ -25,6 +25,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.LocalContentColor
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -122,4 +123,30 @@ fun PreviewTodoScreen() {
 fun PreviewTodoRow() {
     val todo = remember { generateRandomTodoItem() }
     TodoRow(todo = todo, onItemClicked = {}, modifier = Modifier.fillMaxWidth())
+}
+
+@Composable
+fun TodoInputTextField(modifier: Modifier) {
+    val (text, setText) = remember { mutableStateOf("") }
+    TodoInputText(
+        text = text,
+        onTextChange = setText,
+        modifier = modifier
+    )
+}
+
+@Composable
+fun TodoItemInput(onItemComplete: (TodoItem) -> Unit) {
+    Column {
+        Row(
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .padding(top = 16.dp)
+        ) {
+            TodoInputTextField(Modifier
+                .weight(1f)
+                .padding(end = 8.dp)
+            )
+        }
+    }
 }
