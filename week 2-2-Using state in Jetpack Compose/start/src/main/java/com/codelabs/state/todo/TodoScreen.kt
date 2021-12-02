@@ -165,6 +165,7 @@ fun TodoItemEntryInput(onItemComplete: (TodoItem) -> Unit) {
     )
 }
 
+@Composable
 private fun TodoItemEntryInput(
     text: String,
     setText: (String) -> Unit,
