@@ -53,7 +53,7 @@ fun TodoScreen(
             elevate = true,
             modifier = Modifier.fillMaxWidth()
         ) {
-            TodoItemInput(onItemComplete = onAddItem)
+            TodoItemEntryInput(onItemComplete = onAddItem)
         }
         LazyColumn(
             modifier = Modifier.weight(1f),
@@ -82,7 +82,7 @@ fun TodoScreen(
 
 @Preview
 @Composable
-fun PreviewTodoItemInput() = TodoItemInput {}
+fun PreviewTodoItemInput() = TodoItemEntryInput {}
 
 /**
  * Stateless composable that displays a full-width [TodoItem].
@@ -146,7 +146,7 @@ fun TodoInputTextField(text: String, onTextChange: (String) -> Unit, modifier: M
 }
 
 @Composable
-fun TodoItemInput(onItemComplete: (TodoItem) -> Unit) {
+fun TodoItemEntryInput(onItemComplete: (TodoItem) -> Unit) {
     val (text, setText) = remember { mutableStateOf("") }
     val (icon, setIcon) = remember { mutableStateOf(TodoIcon.Default) }
     val iconVisible = text.isNotBlank()
@@ -155,6 +155,24 @@ fun TodoItemInput(onItemComplete: (TodoItem) -> Unit) {
         setIcon(TodoIcon.Default)
         setText("")
     }
+    TodoItemEntryInput(
+        text = text,
+        setText = setText,
+        icon = icon,
+        onIconChange = setIcon,
+        submit = submit,
+        iconVisible = iconVisible
+    )
+}
+
+private fun TodoItemEntryInput(
+    text: String,
+    setText: (String) -> Unit,
+    icon: TodoIcon,
+    onIconChange: (TodoIcon) -> Unit,
+    submit: () -> Unit,
+    iconVisible: Boolean
+) {
     Column {
         Row(
             modifier = Modifier
@@ -177,7 +195,7 @@ fun TodoItemInput(onItemComplete: (TodoItem) -> Unit) {
             )
         }
         if (iconVisible) {
-            AnimatedIconRow(icon, setIcon, Modifier.padding(top = 8.dp))
+            AnimatedIconRow(icon, onIconChange, Modifier.padding(top = 8.dp))
         } else {
             Spacer(modifier = Modifier.height(16.dp))
         }
