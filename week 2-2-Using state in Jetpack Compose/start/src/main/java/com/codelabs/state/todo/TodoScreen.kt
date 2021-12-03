@@ -159,7 +159,7 @@ fun TodoItemEntryInput(onItemComplete: (TodoItem) -> Unit) {
         setIcon(TodoIcon.Default)
         setText("")
     }
-    TodoItemEntryInput(
+    TodoItemInput(
         text = text,
         setText = setText,
         icon = icon,
@@ -170,7 +170,7 @@ fun TodoItemEntryInput(onItemComplete: (TodoItem) -> Unit) {
 }
 
 @Composable
-private fun TodoItemEntryInput(
+fun TodoItemInput(
     text: String,
     setText: (String) -> Unit,
     icon: TodoIcon,
