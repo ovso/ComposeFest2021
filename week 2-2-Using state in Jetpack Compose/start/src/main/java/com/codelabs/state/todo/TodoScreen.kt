@@ -85,7 +85,7 @@ fun TodoScreen(
                 } else {
                     TodoRow(
                         todo = todo,
-                        onItemClicked = { onRemoveItem(it) },
+                        onItemClicked = { onStartEdit(it) },
                         modifier = Modifier.fillParentMaxWidth()
                     )
                 }
