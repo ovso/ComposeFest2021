@@ -418,15 +418,38 @@ private fun HomeTabIndicator(
     tabPage: TabPage
 ) {
     // TODO 4: Animate these value changes.
-    val transition = updateTransition(targetState = tabPage, label = "")
-    val indicatorLeft by transition.animateDp(label = "") { page ->
+    val transition = updateTransition(
+        targetState = tabPage,
+        label = "Tab indicator"
+    )
+    val indicatorLeft by transition.animateDp(
+        transitionSpec = {
+            if (TabPage.Home isTransitioningTo TabPage.Work) {
+                spring(stiffness = Spring.StiffnessVeryLow)
+            } else {
+                spring(stiffness = Spring.StiffnessMedium)
+            }
+        },
+        label = "Indicator left"
+    ) { page ->
         tabPositions[page.ordinal].left
     }
 
-    val indicatorRight by transition.animateDp(label = "") { page ->
+    val indicatorRight by transition.animateDp(
+        transitionSpec = {
+            if (TabPage.Home isTransitioningTo TabPage.Work) {
+                spring(stiffness = Spring.StiffnessMedium)
+            } else {
+                spring(stiffness = Spring.StiffnessVeryLow)
+            }
+        },
+        label = "Indicator right"
+    ) { page ->
         tabPositions[page.ordinal].right
     }
-    val color by transition.animateColor(label = "") { page ->
+    val color by transition.animateColor(
+        label = "Border color"
+    ) { page ->
         if (page == TabPage.Home) Purple700 else Green800
     }
 
