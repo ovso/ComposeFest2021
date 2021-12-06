@@ -419,14 +419,14 @@ private fun HomeTabIndicator(
 ) {
     // TODO 4: Animate these value changes.
     val transition = updateTransition(targetState = tabPage, label = "")
-    val indicatorLeft by transition.animateDp { page ->
+    val indicatorLeft by transition.animateDp(label = "") { page ->
         tabPositions[page.ordinal].left
     }
 
-    val indicatorRight by transition.animateDp { page ->
+    val indicatorRight by transition.animateDp(label = "") { page ->
         tabPositions[page.ordinal].right
     }
-    val color by transition.animateColor { page ->
+    val color by transition.animateColor(label = "") { page ->
         if (page == TabPage.Home) Purple700 else Green800
     }
 
