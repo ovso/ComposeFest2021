@@ -3,7 +3,8 @@ package com.example.compose.rally
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
-import androidx.compose.ui.text.toUpperCase
+import androidx.compose.ui.test.onRoot
+import androidx.compose.ui.test.printToLog
 import com.example.compose.rally.ui.components.RallyTopAppBar
 import com.example.compose.rally.ui.theme.RallyTheme
 import org.junit.Rule
@@ -57,8 +58,11 @@ class TopAppBarTest {
                 )
             }
         }
+
+        composeTestRule.onRoot().printToLog("currentLabelExists")
+
         composeTestRule
-            .onNodeWithContentDescription(RallyScreen.Accounts.name.toUpperCase())
+            .onNodeWithContentDescription(RallyScreen.Accounts.name)
             .assertExists()
     }
 }
