@@ -21,12 +21,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -78,7 +73,14 @@ fun RallyApp() {
                 modifier = Modifier.padding(innerPadding)
             ) {
                 composable(RallyScreen.Overview.name) {
-                    OverviewBody()
+                    OverviewBody(
+                        onClickSeeAllAccounts = {
+                            navController.navigate(RallyScreen.Accounts.name)
+                        },
+                        onClickSeeAllBills = {
+                            navController.navigate(RallyScreen.Bills.name)
+                        },
+                    )
                 }
                 composable(RallyScreen.Accounts.name) {
                     AccountsBody(accounts = UserData.accounts)
