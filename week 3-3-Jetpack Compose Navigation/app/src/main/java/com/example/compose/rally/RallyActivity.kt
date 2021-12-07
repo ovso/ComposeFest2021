@@ -79,7 +79,7 @@ fun RallyApp() {
 }
 
 @Composable
-private fun RallyNavHost(
+fun RallyNavHost(
     navController: NavHostController,
     innerPadding: PaddingValues
 ) {
